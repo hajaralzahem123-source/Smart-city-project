@@ -1,59 +1,142 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Smart City AR</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <style>
-    body { margin: 0; overflow: hidden; }
-    #info {
-      position: fixed; top: 10px; left: 10px; right: 10px;
-      z-index: 10; background: rgba(0,0,0,.65);
-      color: white; padding: 10px; border-radius: 12px;
-      font-family: Arial; text-align: center;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Smart City AR</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  font-family:Arial;
+}
+#info{
+  position:fixed;
+  top:10px;
+  left:10px;
+  right:10px;
+  z-index:10;
+  background:rgba(0,0,0,.7);
+  color:white;
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
+}
+</style>
 </head>
 
 <body>
-  <div id="info">وجّه الكاميرا على Hiro Marker لظهور المدينة الذكية 🏙️</div>
 
-  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-    <a-marker preset="hiro">
+<div id="info">
+🏙️ وجه الكاميرا على Hiro Marker
+</div>
 
-      <!-- أرضية المدينة -->
-      <a-plane position="0 0 0" rotation="-90 0 0" width="2.5" height="2.5" color="#2e7d32"></a-plane>
+<a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
 
-      <!-- مباني ذكية -->
-      <a-box position="-0.6 0.35 0" width="0.3" height="0.7" depth="0.3" color="#2196f3"></a-box>
-      <a-box position="0 0.5 0" width="0.35" height="1" depth="0.35" color="#607d8b"></a-box>
-      <a-box position="0.6 0.25 0" width="0.3" height="0.5" depth="0.3" color="#00bcd4"></a-box>
+<a-marker preset="hiro">
 
-      <!-- ألواح شمسية -->
-      <a-box position="-0.6 0.75 0" width="0.35" height="0.03" depth="0.25" color="#0d47a1" rotation="-20 0 0"></a-box>
-      <a-box position="0 1.05 0" width="0.4" height="0.03" depth="0.25" color="#0d47a1" rotation="-20 0 0"></a-box>
+<!-- الأرض -->
+<a-plane
+position="0 0 0"
+rotation="-90 0 0"
+width="2"
+height="2"
+color="#4CAF50">
+</a-plane>
 
-      <!-- توربين رياح -->
-      <a-cylinder position="0.9 0.4 0.4" radius="0.03" height="0.8" color="#eeeeee"></a-cylinder>
-      <a-sphere position="0.9 0.82 0.4" radius="0.06" color="#ffffff"></a-sphere>
+<!-- مبنى -->
+<a-box
+position="0 0.5 0"
+width="0.5"
+height="1"
+depth="0.5"
+color="#2196F3">
+</a-box>
 
-      <a-entity position="0.9 0.82 0.4" animation="property: rotation; to: 0 0 360; loop: true; dur: 1200; easing: linear">
-        <a-box position="0.18 0 0" width="0.35" height="0.04" depth="0.02" color="#ffffff"></a-box>
-        <a-box position="-0.09 0.15 0" width="0.35" height="0.04" depth="0.02" color="#ffffff" rotation="0 0 120"></a-box>
-        <a-box position="-0.09 -0.15 0" width="0.35" height="0.04" depth="0.02" color="#ffffff" rotation="0 0 240"></a-box>
-      </a-entity>
+<!-- مبنى ثاني -->
+<a-box
+position="-0.8 0.3 0"
+width="0.4"
+height="0.6"
+depth="0.4"
+color="#607D8B">
+</a-box>
 
-      <!-- بطارية -->
-      <a-box position="-0.9 0.15 0.5" width="0.25" height="0.3" depth="0.15" color="#4caf50"></a-box>
-      <a-text value="Battery 82%" position="-1 0.45 0.5" color="#ffffff" scale="0.5 0.5 0.5"></a-text>
+<!-- مبنى ثالث -->
+<a-box
+position="0.8 0.4 0"
+width="0.4"
+height="0.8"
+depth="0.4"
+color="#00BCD4">
+</a-box>
 
-      <!-- عنوان -->
-      <a-text value="Smart City" position="-0.65 1.3 0" color="#ffd700" scale="0.7 0.7 0.7"></a-text>
+<!-- توربين -->
+<a-cylinder
+position="1 0.4 0.7"
+radius="0.03"
+height="0.8"
+color="white">
+</a-cylinder>
 
-    </a-marker>
+<a-entity
+position="1 0.8 0.7"
+animation="property: rotation; to: 0 0 360; loop: true; dur: 1000; easing: linear">
 
-    <a-entity camera></a-entity>
-  </a-scene>
+<a-box
+position="0.15 0 0"
+width="0.3"
+height="0.03"
+depth="0.02"
+color="white">
+</a-box>
+
+<a-box
+position="-0.08 0.13 0"
+width="0.3"
+height="0.03"
+depth="0.02"
+rotation="0 0 120"
+color="white">
+</a-box>
+
+<a-box
+position="-0.08 -0.13 0"
+width="0.3"
+height="0.03"
+depth="0.02"
+rotation="0 0 240"
+color="white">
+</a-box>
+
+</a-entity>
+
+<!-- لوح شمسي -->
+<a-box
+position="-1 0.05 0.5"
+width="0.4"
+height="0.02"
+depth="0.3"
+rotation="-20 0 0"
+color="#0D47A1">
+</a-box>
+
+<!-- عنوان -->
+<a-text
+value="Smart City"
+position="-0.7 1.3 0"
+color="yellow"
+scale="0.7 0.7 0.7">
+</a-text>
+
+</a-marker>
+
+<a-entity camera></a-entity>
+
+</a-scene>
+
 </body>
 </html>
