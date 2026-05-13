@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart City Project</title>
 
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #07111f, #0b3d5c);
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .card {
+      max-width: 700px;
+      margin: auto;
+      background: rgba(255,255,255,0.1);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      color: #ffd700;
+      font-size: 34px;
+    }
+
+    .city {
+      font-size: 80px;
+      margin: 20px 0;
+    }
+
+    .box {
+      background: rgba(255,255,255,0.12);
+      margin: 12px 0;
+      padding: 15px;
+      border-radius: 14px;
+      font-size: 18px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 14px 25px;
+      border: none;
+      border-radius: 30px;
+      background: #ffd700;
+      color: #000;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 22px;
+      color: #00ff99;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>🏙️ مشروع المدينة الذكية</h1>
+    <p>مدينة ذكية تعتمد على الطاقة المتجددة والتقنية لتقليل الانبعاثات.</p>
+
+    <div class="city">🏠 ☀️ 🌬️ 🔋 🌱</div>
+
+    <div class="box">☀️ الطاقة الشمسية: 4.8 kW</div>
+    <div class="box">🌬️ طاقة الرياح: 2.3 kW</div>
+    <div class="box">🔋 البطارية: 82%</div>
+    <div class="box">🌱 تقليل انبعاثات CO₂: 2.9 kg</div>
+
+    <button onclick="calculateEnergy()">احسب إنتاج الطاقة</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateEnergy() {
+      var solar = 4.8;
+      var wind = 2.3;
+      var total = solar + wind;
+
+      document.getElementById("result").innerHTML =
+        "إجمالي الطاقة المنتجة = " + total + " kW ✅";
+    }
+  </script>
+</body>
+</html>
