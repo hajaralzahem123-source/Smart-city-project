@@ -1,93 +1,59 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart City Project</title>
-
+  <title>Smart City AR</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #07111f, #0b3d5c);
-      color: white;
-      text-align: center;
-      padding: 30px;
-    }
-
-    .card {
-      max-width: 700px;
-      margin: auto;
-      background: rgba(255,255,255,0.1);
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
-
-    h1 {
-      color: #ffd700;
-      font-size: 34px;
-    }
-
-    .city {
-      font-size: 80px;
-      margin: 20px 0;
-    }
-
-    .box {
-      background: rgba(255,255,255,0.12);
-      margin: 12px 0;
-      padding: 15px;
-      border-radius: 14px;
-      font-size: 18px;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 14px 25px;
-      border: none;
-      border-radius: 30px;
-      background: #ffd700;
-      color: #000;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    #result {
-      margin-top: 20px;
-      font-size: 22px;
-      color: #00ff99;
-      font-weight: bold;
+    body { margin: 0; overflow: hidden; }
+    #info {
+      position: fixed; top: 10px; left: 10px; right: 10px;
+      z-index: 10; background: rgba(0,0,0,.65);
+      color: white; padding: 10px; border-radius: 12px;
+      font-family: Arial; text-align: center;
     }
   </style>
 </head>
 
 <body>
-  <div class="card">
-    <h1>🏙️ مشروع المدينة الذكية</h1>
-    <p>مدينة ذكية تعتمد على الطاقة المتجددة والتقنية لتقليل الانبعاثات.</p>
+  <div id="info">وجّه الكاميرا على Hiro Marker لظهور المدينة الذكية 🏙️</div>
 
-    <div class="city">🏠 ☀️ 🌬️ 🔋 🌱</div>
+  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    <a-marker preset="hiro">
 
-    <div class="box">☀️ الطاقة الشمسية: 4.8 kW</div>
-    <div class="box">🌬️ طاقة الرياح: 2.3 kW</div>
-    <div class="box">🔋 البطارية: 82%</div>
-    <div class="box">🌱 تقليل انبعاثات CO₂: 2.9 kg</div>
+      <!-- أرضية المدينة -->
+      <a-plane position="0 0 0" rotation="-90 0 0" width="2.5" height="2.5" color="#2e7d32"></a-plane>
 
-    <button onclick="calculateEnergy()">احسب إنتاج الطاقة</button>
+      <!-- مباني ذكية -->
+      <a-box position="-0.6 0.35 0" width="0.3" height="0.7" depth="0.3" color="#2196f3"></a-box>
+      <a-box position="0 0.5 0" width="0.35" height="1" depth="0.35" color="#607d8b"></a-box>
+      <a-box position="0.6 0.25 0" width="0.3" height="0.5" depth="0.3" color="#00bcd4"></a-box>
 
-    <div id="result"></div>
-  </div>
+      <!-- ألواح شمسية -->
+      <a-box position="-0.6 0.75 0" width="0.35" height="0.03" depth="0.25" color="#0d47a1" rotation="-20 0 0"></a-box>
+      <a-box position="0 1.05 0" width="0.4" height="0.03" depth="0.25" color="#0d47a1" rotation="-20 0 0"></a-box>
 
-  <script>
-    function calculateEnergy() {
-      var solar = 4.8;
-      var wind = 2.3;
-      var total = solar + wind;
+      <!-- توربين رياح -->
+      <a-cylinder position="0.9 0.4 0.4" radius="0.03" height="0.8" color="#eeeeee"></a-cylinder>
+      <a-sphere position="0.9 0.82 0.4" radius="0.06" color="#ffffff"></a-sphere>
 
-      document.getElementById("result").innerHTML =
-        "إجمالي الطاقة المنتجة = " + total + " kW ✅";
-    }
-  </script>
+      <a-entity position="0.9 0.82 0.4" animation="property: rotation; to: 0 0 360; loop: true; dur: 1200; easing: linear">
+        <a-box position="0.18 0 0" width="0.35" height="0.04" depth="0.02" color="#ffffff"></a-box>
+        <a-box position="-0.09 0.15 0" width="0.35" height="0.04" depth="0.02" color="#ffffff" rotation="0 0 120"></a-box>
+        <a-box position="-0.09 -0.15 0" width="0.35" height="0.04" depth="0.02" color="#ffffff" rotation="0 0 240"></a-box>
+      </a-entity>
+
+      <!-- بطارية -->
+      <a-box position="-0.9 0.15 0.5" width="0.25" height="0.3" depth="0.15" color="#4caf50"></a-box>
+      <a-text value="Battery 82%" position="-1 0.45 0.5" color="#ffffff" scale="0.5 0.5 0.5"></a-text>
+
+      <!-- عنوان -->
+      <a-text value="Smart City" position="-0.65 1.3 0" color="#ffd700" scale="0.7 0.7 0.7"></a-text>
+
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
 </body>
 </html>
